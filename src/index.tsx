@@ -1,35 +1,44 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import "./css/layout.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-    RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
 } from "react-router-dom";
+import Header from './comps/layout/header';
+import Footer from './comps/layout/footer';
 
-const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLElement
+// Crear el enrutador con rutas
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      {/* Puedes agregar más rutas aquí */}
+      {/* <Route path="dashboard" element={<Dashboard />} /> */}
+    </Route>
+  )
 );
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path="/" element={<App />}>
-            {/* <Route path="dashboard" element={<Dashboard />} /> */}
-            {/* ... etc. */}
-        </Route>
-    )
+// Crear el contenedor principal (root) y renderizar el app
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
+  <React.StrictMode>
+    <main>
+      {/* Aquí está el Header y Footer global */}
+      <Header />
+      {/* Aquí va el RouterProvider */}
+      <RouterProvider router={router} />
+      <Footer />
+    </main>
+  </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// Si deseas medir el rendimiento, puedes hacerlo aquí
 reportWebVitals();
